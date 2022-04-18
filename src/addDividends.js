@@ -1,12 +1,12 @@
-module.exports = async function (dividends, addSourceButtonClasses, sourcesListClasses, countriesMap, currenciesMap) {
-    const addSourceButtonSelector = classesToSelector(addSourceButtonClasses)
-    const sourcesListSelector = classesToSelector(sourcesListClasses)
+module.exports = async function (dividends, sourcesListSelector, countriesMap, currenciesMap) {
+    const sourcesList = document.querySelector(sourcesListSelector)
+    const addSourceButton = findElementByText('Добавить источник дохода', sourcesList, 'button')
 
     for (const [index, item] of dividends.entries()) {
         console.log(`${index + 1}/${dividends.length}`)
 
         // добавить новый источник
-        await click(document.querySelector(addSourceButtonSelector))
+        await click(addSourceButton)
 
         const sourceElement = document.querySelector(`${sourcesListSelector} > div:nth-child(${index + 1})`)
 
@@ -61,7 +61,7 @@ function findElementById(id) {
 }
 
 function findElementByText(text, parentElement = document, tag = 'div') {
-    const xpath = `//${tag}[text()='${text}']`
+    const xpath = `.//${tag}[text()='${text}']`
     return document.evaluate(xpath, parentElement, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
 }
 
@@ -96,8 +96,4 @@ function click(element, delay = 100) {
     element.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
     element.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     return new Promise(resolve => setTimeout(resolve, delay))
-}
-
-function classesToSelector(classes) {
-    return classes.split(' ').map(className => `.${className}`).join('')
 }
