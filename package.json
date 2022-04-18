@@ -5,14 +5,14 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "csv-to-json": "csvtojson --delimiter=';' dividends.csv > dividends.json",
+    "xlsx-to-json": "node src/parseXlsx dividends.xlsx > dividends.json",
     "build-console-code": "browserify src/index.js > consoleCode.js",
-    "build": "npm run csv-to-json && npm run build-console-code"
+    "build": "npm run xlsx-to-json && npm run build-console-code"
   },
   "author": "Dmitry Kirilyuk <gk.joker@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^17.0.0",
-    "csvtojson": "^2.0.10"
+    "xlsx": "^0.18.5"
   }
 }
