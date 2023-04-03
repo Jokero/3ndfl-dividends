@@ -1,13 +1,13 @@
 {
   "name": "3ndfl-dividends",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Скрипт для добавления дивидендов от зарубежных компаний в 3-НДФЛ на сайте налоговой",
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "xlsx-to-json": "node src/parseXlsx dividends.xlsx > dividends.json",
+    "convert-xlsx-to-json": "node src/parseXlsx dividends.xlsx > dividends.json",
     "build-console-code": "browserify src/index.js > consoleCode.js",
-    "build": "npm run xlsx-to-json && npm run build-console-code"
+    "build": "npm install && npm run convert-xlsx-to-json && npm run build-console-code"
   },
   "author": "Dmitry Kirilyuk <gk.joker@gmail.com>",
   "license": "MIT",

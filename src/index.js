@@ -1,5 +1,5 @@
 const dividends = require('../dividends.json')
 const addDividends = require('./addDividends')
-const { sourcesListSelector, countriesMap, currenciesMap } = require('./constants')
+const { countriesMap, currenciesMap } = require('./constants')
 
-addDividends(dividends, sourcesListSelector, countriesMap, currenciesMap)
+addDividends(dividends, countriesMap, currenciesMap)
